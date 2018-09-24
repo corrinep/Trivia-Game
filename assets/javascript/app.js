@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  printQuestions(questionBank);
   console.log("Ikuze!!")
  });
 
@@ -25,12 +26,15 @@ var questionBank = {
   answer: "Inky, Blinky, Pinky and Sue"
 
 }
+console.log(questionBank) ; 
+
 function printQuestions(questionsList){
 
   for (var i = 0; i < questionsList.length; i++) {
     var quiz = $("<div>")
     var quizText = $("<h2>");
     quizText.text(questionsList[i].question);
+    console.log(questionsList[i].question) ;   
     quiz.append(quizText);
 
     for (var k = 0; k < questionsList[i].choices.length; k++) {
@@ -38,7 +42,7 @@ function printQuestions(questionsList){
       var radioDiv = $("<div>");
       radioDiv.addClass("form-check form-check-inline");
 
-      var radioInput = $("<input");
+      var radioInput = $("<input>");
       radioInput.attr({class: "form-check-input", type: "radio", name: i, value: questionsList[i].choices[k]})
       var radioLabel = $("<label>");
       radioLabel
@@ -49,15 +53,18 @@ function printQuestions(questionsList){
 
       quiz.append(radioDiv);
     }
-
-    $("form").append(quiz);
+      
+    $("#form").append(quiz);
   }
   
 }
 //Print questions
+console.log("line 58!")
+printQuestions(questionBank);
+console.log("line 62")
 
 $(document).on("change", ".form-check-input", function() {
-
+  
   var questionAnsweredIndex = $(this).attr("name");
   var answerPicked = $(this).val();
 
